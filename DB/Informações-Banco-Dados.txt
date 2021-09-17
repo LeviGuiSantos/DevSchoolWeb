@@ -1,0 +1,8 @@
+Banco de Dados (DevSchool)
+
+Host: my01.winhost.com
+BD: mysql_17753_nsf2021
+Usuário: nsf2021
+Senha: nsf@2021
+
+Mapeamento: npx sequelize-auto -h my01.winhost.com -d mysql_17753_nsf2021 -u nsf2021 -x nsf@2021 -e mysql -o models -l esm

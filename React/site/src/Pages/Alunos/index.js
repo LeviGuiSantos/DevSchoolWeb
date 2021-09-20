@@ -31,12 +31,10 @@ export default function Index() {
             return false;
     };
 
-    async function listarAluno(item) {
+    async function listarAluno() {
         loading.current.continuousStart();
-
-        let r = await api.listarAlunoInserido(item.nm_aluno);
+        let r = await api.listar();
         setAlunos(r);
-        
         loading.current.complete();
     };
 
@@ -44,7 +42,7 @@ export default function Index() {
         if (nome === '')
             return toast.error('Campo de Nome Precisa Ser Preenchido!');
         
-        if (chamada < 0)
+        if (chamada <= 0)
             return toast.error('Campo de Número Precisa Ser Maior que 0!');
 
         if (turma === '')
@@ -54,12 +52,12 @@ export default function Index() {
             return toast.error('Campo de Curso Precisa Ser Preenchido!');
 
         if (idAlterando === 0) {
-            let e = await api.inserirAluno(nome, chamada, curso, turma);
-            if (!revisarErro(e));
+            let e = await api.inserir(nome, chamada, curso, turma);
+            if (!revisarErro(e))
                 return toast.success(`Aluno ${nome} Cadastrado!`);
             } else {
-            let e = await api.alterarTurma(idAlterando, nome, chamada, curso, turma);
-            if (!revisarErro(e));
+            let e = await api.alterar(idAlterando, nome, chamada, curso, turma);
+            if (!revisarErro(e))
                 return toast.success(`Aluno ${nome} Alterado!`);
             };
 
@@ -78,18 +76,18 @@ export default function Index() {
     async function removerAluno() {
         confirmAlert({
             title: 'Remover Aluno',
-            message: `Você Realmente Deseja Remover o Aluno ${item.nm_aluno} ?`,
+            message: `Você Realmente Deseja Remover o Aluno ${nome}} ?`,
             buttons: [
                 {
                     label: 'Sim',
                     onClick: async () => {
-                        let r = await api.removerAlunoInserido(item.id_matricula);
-                        toast.success(`Aluno ${item.nm_aluno} Removido com Sucesso!`)
+                        let r = await api.remover(alunos);
+                        toast.success(`Aluno ${nome} Removido com Sucesso!`)
                         listarAluno();
                     }
                 },
             {
-                label: 'Não'
+                label: 'Não',
             }
             ]
         });
@@ -110,10 +108,10 @@ export default function Index() {
     return (
         <Container>
             <Menu />
+            <ToastContainer />
+            <LoadingBar color="986CDF" ref={loading} />
             <Elementos>
                 <Cabecalho />
-                <ToastContainer />
-                <LoadingBar color="" ref={loading} />
                 <div class="body-right-box">
                     <div class="novo-estudante-box">
                         <div class="text-novo-estudante">
@@ -173,8 +171,8 @@ export default function Index() {
                                         <td> {item.nr_chamada} </td>
                                         <td> {item.nm_turma} </td>
                                         <td> {item.nm_curso} </td>
-                                        <td className="coluna-acao"> <button onClick={() => editarAluno(item)}> <img src=""/> </button> </td>
-                                        <td className="coluna-acao"> <button onClick={() => removerAluno(item.id_matricula)}> <img src=""/> </button> </td>
+                                        <td className="coluna-acao"> <button onClick={() => editarAluno(item)}> <img src="/Assets/Images/Ícone-Editar.svg"/> </button> </td>
+                                        <td className="coluna-acao"> <button onClick={() => removerAluno(item.id_matricula)}> <img src="/Assets/Images/Ícone-Remover.svg"/> </button> </td>
                                     </tr>
                                 )};
                             </tbody> 

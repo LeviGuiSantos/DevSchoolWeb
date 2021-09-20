@@ -257,13 +257,13 @@ input {
     font-weight: 800;
 }
 
-.button-criar {
+.botao-criar {
     align-self: flex-end;
     justify-self: flex-end;
     padding-bottom: 1.5em;
 }
 
-.button-criar button {
+.botao-criar button {
     width: 106px;
     height: 36px;
 
@@ -313,7 +313,7 @@ input {
     margin-bottom: 1em;
 }
 
-.gray{
+.gray {
     width: 1454px;
     height: 61.93px;
     background: #F5F5F5;
@@ -339,7 +339,7 @@ input {
     border: 1px solid #E2E2E2;
  }
 
- .body-right-box {
+.body-right-box {
     display: flex;
     flex-direction: column;
 
@@ -352,12 +352,12 @@ input {
     margin-right: 0em;
  }
 
- .reader-right-box {
+.reader-right-box {
      margin-top: 0em;
      padding-right: 0em;
  }
 
- td button {
+td button {
      border-radius: 50%;
      background-color: #565656;
      border: none;
@@ -365,11 +365,11 @@ input {
      height: 31px;
  }
  
- .box-imagem {
+.box-imagem {
      margin-right: 2em;
  }
 
- thead {
+thead {
      background-color: #986CDF;
  }
 
@@ -417,7 +417,7 @@ button {
     cursor: pointer;
 }
 
-.button-create button:hover {
+.botao-create button:hover {
     background-color: #aa3997;
     transition: 2s;
 }
